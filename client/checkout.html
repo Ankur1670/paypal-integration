@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayPal Checkout</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+        background-color: #f4f4f9;
+    }
+
+    h1 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        font-size: 1rem;
+        margin-bottom: 8px;
+        color: #555;
+    }
+
+    input[type="email"],
+    select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        font-size: 1rem;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: #0070ba;
+        color: #fff;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+        width: 100%;
+        box-sizing: border-box;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #005f8d;
+    }
+
+    #paypal-button-container {
+        max-width: 400px;
+        width: 100%;
+    }
+</style>
+<body>
+    <h1>PayPal Payment Gateway</h1>
+    
+    <form id="payment-form">
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="course">Select Course:</label>
+        <select id="course" name="course" required>
+            <option value="200-hours-ttc" data-price="100.00">200 Hours TTC - $100.00</option>
+            <option value="300-hours-ttc" data-price="150.00">300 Hours TTC - $150.00</option>
+            <option value="100-hours-ttc" data-price="50.00">100 Hours TTC - $50.00</option>
+            <option value="100-hours-ttc" data-price="50.00">100 Hours TTC - $50.00</option>
+            <option value="100-hours-ttc" data-price="50.00">100 Hours TTC - $650.00</option>
+            <option value="100-hours-ttc" data-price="50.00">100 Hours TTC - $450.00</option>
+            <option value="100-hours-ttc" data-price="50.00">100 Hours TTC - $900.00</option>
+
+        </select>
+
+        <button type="submit">Proceed to Payment</button>
+    </form>
+
+    <div id="paypal-button-container"></div>
+
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AQgfIiDRXd0Utm-5yw7kLgtQ8Lubm44IRiAlcBmwiiMzWRCXAZRrlsM4iEtG1hhWJrNskOVqYrpLxyFl&currency=USD"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="./app.js"></script>
+</body>
+</html>

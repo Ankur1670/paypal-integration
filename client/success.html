@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            max-width: 600px;
+        }
+        h1 {
+            color: #28a745;
+        }
+        p {
+            color: #6c757d;
+        }
+        .details {
+            text-align: left;
+            margin-top: 20px;
+        }
+        .details div {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Payment Successful!</h1>
+        <p>Thank you for your purchase. Here are your transaction details:</p>
+        <div class="details">
+            <div><strong>Transaction ID:</strong> <span id="transaction-id"></span></div>
+            <div><strong>Course:</strong> <span id="course-name"></span></div>
+            <div><strong>Fees:</strong> <span id="course-fees"></span></div>
+            <div><strong>Email:</strong> <span id="email-address"></span></div>
+        </div>
+        <a href="/">Return to Home</a>
+    </div>
+
+    <script>
+        // Function to get URL parameters
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                transactionId: params.get('transactionId'),
+                coursePrice: params.get('coursePrice'),
+                email: params.get('email')
+            };
+        }
+
+        // Populate the fields with data from URL parameters
+        function populateDetails() {
+            const { transactionId, coursePrice, email } = getQueryParams();
+            document.getElementById('transaction-id').textContent = transactionId;
+            document.getElementById('course-name').textContent = "Selected Course"; // You might need to adjust based on actual course name
+            document.getElementById('course-fees').textContent = `$${coursePrice}`;
+            document.getElementById('email-address').textContent = email;
+        }
+
+        // Populate details on page load
+        populateDetails();
+    </script>
+</body>
+</html>
