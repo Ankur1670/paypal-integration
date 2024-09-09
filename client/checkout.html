@@ -4,74 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PayPal Checkout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #0070ba;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #005f8d;
+        }
+
+        #paypal-button-container {
+            max-width: 400px;
+            width: 100%;
+        }
+    </style>
 </head>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        margin: 0;
-        background-color: #f4f4f9;
-    }
-
-    h1 {
-        color: #333;
-        margin-bottom: 20px;
-    }
-
-    form {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        max-width: 400px;
-        width: 100%;
-        margin-bottom: 20px;
-    }
-
-    label {
-        display: block;
-        font-size: 1rem;
-        margin-bottom: 8px;
-        color: #555;
-    }
-
-    input[type="email"],
-    select {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        margin-bottom: 20px;
-        font-size: 1rem;
-        box-sizing: border-box;
-    }
-
-    button {
-        background-color: #0070ba;
-        color: #fff;
-        padding: 12px 20px;
-        border: none;
-        border-radius: 4px;
-        font-size: 1rem;
-        cursor: pointer;
-        width: 100%;
-        box-sizing: border-box;
-        transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-        background-color: #005f8d;
-    }
-
-    #paypal-button-container {
-        max-width: 400px;
-        width: 100%;
-    }
-</style>
 <body>
     <h1>PayPal Payment Gateway</h1>
     
@@ -81,13 +81,18 @@
 
         <label for="course">Select Course:</label>
         <select id="course" name="course" required>
-            <option value="200-hours-ttc" data-price="100.00">200 Hours TTC - $100.00</option>
-            <option value="300-hours-ttc" data-price="150.00">300 Hours TTC - $150.00</option>
-            <option value="100-hours-ttc" data-price="50.00">100 Hours TTC - $50.00</option>
-            <option value="100-hours-ttc" data-price="50.00">300 Hours TTC - $50.00</option>
-            <option value="100-hours-ttc" data-price="50.00">200 Hours TTC - $50.00</option>
-            <option value="100-hours-ttc" data-price="50.00">300 Hours TTC - $850.00</option>
-            <option value="100-hours-ttc" data-price="50.00">200 Hours TTC - $700.00</option>
+            <option value="100-hours-ttc" data-price="75.00">100 Hour Yoga Teacher Training Course - $75.00</option>
+            <option value="200-hours-ttc" data-price="125.00">200 Hour Yoga Teacher Training Course - $125.00</option>
+            <option value="300-hours-ttc" data-price="125.00">300 Hour Yoga Teacher Training Course - $125.00</option>
+            <option value="100-hours-online-ttc" data-price="55.00">100 Hour Online Yoga Teacher Training Course - $55.00</option>
+            <option value="200-hours-online-ttc" data-price="75.00">200 Hour Online Yoga Teacher Training Course - $75.00</option>
+            <option value="300-hours-online-ttc" data-price="75.00">300 Hour Online Yoga Teacher Training Course - $75.00</option>
+            <option value="3-days-yoga-retreat" data-price="25.00">03 Days Yoga Retreat Course - $25.00</option>
+            <option value="5-days-yoga-retreat" data-price="30.00">05 Days Yoga Retreat Course - $30.00</option>
+            <option value="7-days-yoga-retreat" data-price="40.00">07 Days Yoga Retreat Course - $40.00</option>
+            <option value="10-days-yoga-retreat" data-price="50.00">10 Days Yoga Retreat Course - $50.00</option>
+            <option value="private-online-course" data-price="99.00">Private Online Yoga Course - $99.00/month</option>
+            <option value="group-online-course" data-price="12.00">Group Online Yoga Course - $12.00/month</option>
 
         </select>
 
@@ -100,6 +105,37 @@
     <script src="https://www.paypal.com/sdk/js?client-id=AQgfIiDRXd0Utm-5yw7kLgtQ8Lubm44IRiAlcBmwiiMzWRCXAZRrlsM4iEtG1hhWJrNskOVqYrpLxyFl&currency=USD"></script>
     
     <!-- Custom JavaScript -->
-    <script src="./app.js"></script>
+    <script>
+        document.getElementById('payment-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Clear previous PayPal button if it exists
+            var paypalButtonContainer = document.getElementById('paypal-button-container');
+            paypalButtonContainer.innerHTML = '';
+
+            // Render the PayPal button
+            paypal.Buttons({
+                createOrder: function(data, actions) {
+                    var courseSelect = document.getElementById('course');
+                    var selectedOption = courseSelect.options[courseSelect.selectedIndex];
+                    var price = selectedOption.getAttribute('data-price');
+
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: price
+                            }
+                        }]
+                    });
+                },
+                onApprove: function(data, actions) {
+                    return actions.order.capture().then(function(details) {
+                        alert('Transaction completed by ' + details.payer.name.given_name);
+                        // Optionally redirect to a thank you page or similar
+                    });
+                }
+            }).render('#paypal-button-container');
+        });
+    </script>
 </body>
 </html>
