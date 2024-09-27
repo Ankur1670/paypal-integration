@@ -18,22 +18,27 @@ const generateAccessToken = async () => {
     }
 };
 
-
 const createOrder = async (amount) => {
     try {
         const accessToken = await generateAccessToken();
+        const clientToken = await axios.post(`${PAYPAL_API}/v1/identity/generate-token`, {}, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        });
         const response = await axios.post(`${PAYPAL_API}/v2/checkout/orders`, {
             intent: 'CAPTURE',
             purchase_units: [{
                 amount: {
                     currency_code: 'USD',
-                    value: amount,
+                    value: parseFloat(amount), // Convert amount to number
                 },
                 description: 'Course Payment'
             }],
         }, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
+                'PayPal-Client-Token': clientToken.data.token, // Add client-token
             },
         });
         return response.data;
@@ -46,9 +51,15 @@ const createOrder = async (amount) => {
 const capturePayment = async (orderId) => {
     try {
         const accessToken = await generateAccessToken();
+        const clientToken = await axios.post(`${PAYPAL_API}/v1/identity/generate-token`, {}, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        });
         const response = await axios.post(`${PAYPAL_API}/v2/checkout/orders/${orderId}/capture`, {}, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
+                'PayPal-Client-Token': clientToken.data.token, // Add client-token
             },
         });
         return response.data;

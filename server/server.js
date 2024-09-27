@@ -13,13 +13,13 @@ app.get('/', (req, res) => {
 
 app.post('/api/orders', async (req, res) => {
     try {
-        const { amount, email } = req.body;  // Get amount and email from request body
+        const { amount, email } = req.body;
         const order = await createOrder(amount);
         // Optionally, store email or other info in your database
         res.json(order);
     } catch (error) {
         console.error('Error creating order:', error.message);
-        res.status(500).send('Error creating order');
+        res.status(500).send({ error: 'Error creating order' });
     }
 });
 
@@ -29,7 +29,7 @@ app.post('/api/orders/:orderID/capture', async (req, res) => {
         res.json(capture);
     } catch (error) {
         console.error('Error capturing payment:', error.message);
-        res.status(500).send('Error capturing payment');
+        res.status(500).send({ error: 'Error capturing payment' });
     }
 });
 
